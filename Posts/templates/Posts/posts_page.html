@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row row-cols-auto">
+            {% for post in posts %}
+                <div class="col">
+                    <div class="card" style="width: 23rem; height: 23rem;">
+                        {% if post.cover_image %}
+                            <img src="{{ post.cover_image.url }}" class="card-img-top" alt="..."
+                                 style="height: 200px; object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <p class="card-text">{{ post.subtitle }}</p>
+
+                            <div class="d-flex gap-2">
+                                <a href="{% url 'post' post.id %}" class="btn btn-outline-primary">Read more</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

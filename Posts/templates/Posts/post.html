@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+{% block content %}
+
+    <div class="container">
+        <div class="mx-auto text-center my-3">
+            {% if post.cover_image %}
+                <img src="{{ post.cover_image.url }}" alt="Image" class="img-thumbnail"
+                     style="width: 50%; height: 300px; object-fit: cover;">
+            {% endif %}
+            <h1>{{ post.title }}</h1>
+
+            <p>{{ post.subtitle }}</p>
+        </div>
+
+        <p>{{ post.description | safe }}</p>
+
+        <!-- Button trigger modal -->
+        {% if request.user.is_superuser %}
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Delete
+            </button>
+            <a href="{% url 'update_post' post.id %}" class="btn bg-warning">Edit</a>
+        {% endif %}
+        <!-- Modal -->
+        <form method="POST" class="form" action="">
+            {% csrf_token %}
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Do you want to delete post "{{ post.title }}"?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+{% endblock %}
