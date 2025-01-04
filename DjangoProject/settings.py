@@ -88,12 +88,22 @@ WSGI_APPLICATION = 'DjangoProject.wsgi.application'
 #     }
 # }
 
-# Replace the SQLite DATABASES configuration with PostgreSQL:
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'blog_db',
+#         'USER': 'postgres',
+#         'PASSWORD': 'root',
+#         'HOST': 'localhost',  # o la dirección de tu servidor de base de datos
+#         'PORT': '5432',       # El puerto por defecto de PostgreSQL
+#     }
+# }
+
+
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL')  # Render configurará esta variable automáticamente
-    )
-}
+        default='postgresql://postgres:root@localhost:5432/blog_db',
+        conn_max_age=600)}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
