@@ -91,9 +91,7 @@ WSGI_APPLICATION = 'DjangoProject.wsgi.application'
 # Replace the SQLite DATABASES configuration with PostgreSQL:
 DATABASES = {
     'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgresql://blog_db_svqy_user:aMZQWfrMVXuVee1YAufZtA4gP7DNMiSc@dpg-cts7j223esus73dnu0ug-a/blog_db_svqy',
-        conn_max_age=600
+        default=os.getenv('DATABASE_URL')  # Render configurará esta variable automáticamente
     )
 }
 
@@ -131,7 +129,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# DEBUG = True
+DEBUG = True
 
 if not DEBUG:
     # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
