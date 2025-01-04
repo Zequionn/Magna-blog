@@ -15,12 +15,12 @@
         <p>{{ post.description | safe }}</p>
 
         <!-- Button trigger modal -->
-        {% if request.user.is_superuser %}
+{#        {% if request.user.is_superuser %}#}
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Delete
             </button>
             <a href="{% url 'update_post' post.id %}" class="btn bg-warning">Edit</a>
-        {% endif %}
+{#        {% endif %}#}
         <!-- Modal -->
         <form method="POST" class="form" action="">
             {% csrf_token %}
