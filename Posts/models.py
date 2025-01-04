@@ -10,7 +10,7 @@ class Post(models.Model):
     subtitle = models.CharField(max_length=200, null=True, blank=True)
     description = RichTextUploadingField(null=True, blank=True)
     cover_image = models.ImageField(null=True, blank=True, default="default-featured-image.png.jpg")
-    id = models.BigIntegerField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    id = models.BigAutoField(primary_key=True)
 
 
     def __str__(self):
